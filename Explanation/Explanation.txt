@@ -1,0 +1,33 @@
+The problem was approched through the following steps:
+
+1. Separate the noun phrases from each sentence and store them as objects in a list.
+2. The rest of the sentence is stored as relations.
+3. Relations are divided into two types : identity and other.
+4. Identity relations are defined as: 'is a','is an','is identical to/with','is equal to/with'.
+5. All others are other relations.
+6. Build a weighted directed graph.
+   a) Assign nodes to all objects.
+   b) Assign weights to all relations. For other relations assign weights serially from 1. For identity relations assign weights serially from 100.
+   c) Assign direction to each branch.
+   
+7. CASE 1: [ object1, other_relation1, object2
+             object3, other_relation1, object4
+             object3, identity_relation1, object1
+             this implies: object4, identity_relation1, object2]
+            
+8. CASE 2: [ object1, other_relation1, object2
+             object3, identity_relation1, object1
+             object4, identity_relation1, object2
+             this implies: object3, other_relation1, object4]
+             
+9. CASE 3: [ object1, other_relation1, object2
+             object3, other_relation1, object2
+             this implies: object3, identity_relation1, object1]
+             
+10. CASE 4: [ object1, other_relation1, object2
+              object3, identity_relation1, object1
+              this implies: object3, other_relation1, object2]
+              
+11. Apply all cases on all object nodes.
+              
+12. Print all relations including given and inferred to get the complete knowledge graph.
